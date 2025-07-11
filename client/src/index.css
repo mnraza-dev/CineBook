@@ -9,9 +9,9 @@
   #b99a45
   #1a1a1a
   #e3d6b4 */
-  --color-primary: #000000;
+  --color-primary: #1a1a1a;
   --color-primary-light: #d73854;
-  --color-secondary: #2d3748;
+  --color-secondary: #b99a45;
 }
 * {
   font-family: "Outfit", sans-serif;
