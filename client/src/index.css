@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+
+  /* #C7AE6A
+  #000000
+  #d5c28f
+  #b99a45
+  #1a1a1a
+  #e3d6b4 */
+  --color-primary: #000000;
+  --color-primary-light: #d73854;
+  --color-secondary: #2d3748;
+}
+* {
+  font-family: "Outfit", sans-serif;
+  scrollbar-width: thin;
+  scrollbar-color: #787777 #1e1e1e;
+}
+body {
+  color: #fff;
+  background-color: #09090b;
+  /* background-color: #09090b; */
+  font-family: "Outfit", sans-serif;
+}
