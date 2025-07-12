@@ -1,10 +1,14 @@
 import React from "react";
-
+import HeroSection from "../components/HeroSection";
+import FeaturedSection from "../components/FeaturedSection";
+// import { useNavigate } from "react-router-dom";
 const Home = () => {
   return (
     <div>
-     
-     </div>
+      <HeroSection />
+
+      <FeaturedSection />
+    </div>
   );
 };
 
