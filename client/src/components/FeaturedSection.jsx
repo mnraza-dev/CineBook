@@ -12,7 +12,7 @@ const FeaturedSection = () => {
         <p className="text-logo-gradient text-3xl font-semibold">Now Showing</p>
         <button
           onClick={() => navigate("/movies")}
-          className="login-gradient-radial hover:bg-[#f5ec9b] border-2 border-[#9d9974] hover:border-2 hover:border-[#f5ec9b] text-black px-6 py-2 text-sm  rounded-full flex items-center gap-2 hover:opacity-90 transition font-medium cursor-pointer"
+          className="login-gradient-diagonal hover:bg-[#f5ec9b] border-2 border-[#9d9974] hover:border-2 hover:border-[#f5ec9b] text-black px-6 py-2 text-sm  rounded-full flex items-center gap-2 hover:opacity-90 transition font-medium cursor-pointer"
         >
           View All
           <ArrowRight className="inline-block ml-2 w-4 h-4" />
@@ -24,7 +24,18 @@ const FeaturedSection = () => {
         ))}
       </div>
 
-      <div></div>
+      <div className="flex items-center justify-center mt-6">
+        <button
+          onClick={() => {
+            navigate("/movies");
+            scrollTo(0, 0);
+          }}
+          className="login-gradient-diagonal hover:bg-[#f5ec9b] border-2 border-[#9d9974] hover:border-2 hover:border-[#f5ec9b] text-black px-6 py-1 text-sm  rounded-md flex items-center gap-2 hover:opacity-90 transition font-medium cursor-pointer"
+        >
+          See More
+          {/* <ArrowRightCircle className="inline-block ml-2 w-4 h-4" /> */}
+        </button>
+      </div>
     </div>
   );
 };
