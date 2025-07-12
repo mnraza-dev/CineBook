@@ -22,12 +22,28 @@ const MovieDetail = () => {
       <div className="flex flex-col md:flex-row gap-8 max-w-6xl  items-center justify-center mx-auto">
         <img src={show.movie.posterUrl} alt={show.movie.title} />
       </div>
+      <div className="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto mt-8">
+        <div className="flex-1">
+          <h1 className="text-3xl font-bold">{show.movie.title}</h1>
+          {/* <p className="text-gray-600 mt-2">{show.movie.description}</p> */}
+          <p className="text-gray-500 mt-2">
+            Release Date: {show.movie.releaseDate}
+          </p>
+        </div>
+        <div className="flex-1">
+          <h2 className="text-xl font-semibold">Showtimes</h2>
+          <ul className="mt-2">
+            {/* {dummyShowsData.map((time, index) => (
+              <li key={index} className="text-gray-700">
+                {time}
+              </li>
+            ))} */}
+          </ul>
+        </div>
+      </div>
     </div>
   ) : (
-    <div>
-      <Loader className="animate-spin text-3xl text-center mt-20 mx-auto" />
-    </div>
+    <div>Loading...</div>
   );
 };
-
 export default MovieDetail;
