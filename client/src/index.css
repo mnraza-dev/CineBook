@@ -24,6 +24,10 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+/* 🖌️ Optional text gradient version with diagonal */
+.text-logo-gradient-diagonal { 
+  background-image: linear-gradient(135deg, #905e26, #f5ec9b, #905e26);
+} 
 
 @theme {
   /* #C7AE6A
