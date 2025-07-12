@@ -19,14 +19,14 @@ const Footer = () => {
           </p>
           <div className="flex items-center gap-2 mt-4">
             <img
-              src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/refs/heads/main/assets/appDownload/googlePlayBtnBlack.svg"
-              alt="google play"
-              className="h-10 w-auto border border-white rounded"
+              src={assets.googlePlay}
+              alt="Google Play"
+              className="cursor-pointer h-10 w-auto border border-white rounded transition-transform duration-300 hover:scale-105"
             />
             <img
-              src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/refs/heads/main/assets/appDownload/appleStoreBtnBlack.svg"
-              alt="app store"
-              className="h-10 w-auto border border-white rounded"
+              src={assets.appStore}
+              alt="Google Play"
+              className="cursor-pointer h-10 w-auto border border-white rounded transition-transform duration-300 hover:scale-105"
             />
           </div>
         </div>
@@ -58,7 +58,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="pt-4 text-center text-sm pb-5">
-        Copyright {new Date().getFullYear()} © PreBuiltUI. All Right Reserved.
+        Copyright {new Date().getFullYear()} © CineBook. All Right Reserved.
       </p>
     </footer>
   );
