@@ -22,9 +22,7 @@ const HeroSection = () => {
       </div>
       <p className="text-gray-300 max-w-md">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, quidem
-        voluptatum. Doloribus, cumque. Quisquam, doloribus. Natus, quidem
-        voluptatum. Doloribus, cumque. Quisquam, doloribus. Natus, quidem
-        voluptatum. Doloribus, cumque. Quisquam, doloribus.
+         Doloribus, cumque. Quisquam, doloribus.
       </p>
       <button
         onClick={() => navigate("/movies")}
@@ -33,6 +31,7 @@ const HeroSection = () => {
         Explore Movies
         <ArrowRight className="inline-block ml-2 w-4 h-4" />
       </button>
+
     </div>
   );
 };
