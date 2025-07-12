@@ -11,7 +11,10 @@ const FeaturedSection = () => {
       <div className="flex items-center justify-between mb-8 mt-6">
         <p className="text-logo-gradient text-3xl font-semibold">Now Showing</p>
         <button
-          onClick={() => navigate("/movies")}
+          onClick={() => {
+            navigate("/movies");
+            scrollTo(0, 0);
+          }}
           className="login-gradient-diagonal hover:bg-[#f5ec9b] border-2 border-[#9d9974] hover:border-2 hover:border-[#f5ec9b] text-black px-6 py-2 text-sm  rounded-full flex items-center gap-2 hover:opacity-90 transition font-medium cursor-pointer"
         >
           View All
