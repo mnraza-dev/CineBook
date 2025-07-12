@@ -1,6 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { movies } from "../data/movies";
+import MovieCard from "./MovieCard";
 
 const FeaturedSection = () => {
   const navigate = useNavigate();
@@ -16,7 +18,11 @@ const FeaturedSection = () => {
           <ArrowRight className="inline-block ml-2 w-4 h-4" />
         </button>
       </div>
-      <div></div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+        {movies.slice(0, 4).map((show) => (
+          <MovieCard key={show._id} movie={show} />
+        ))}
+      </div>
 
       <div></div>
     </div>
