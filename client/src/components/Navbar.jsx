@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
-import { MenuIcon, SearchIcon, XIcon } from "lucide-react";
-
+import { MenuIcon, SearchIcon, TicketPlus, XIcon } from "lucide-react";
+import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 const menuLinks = [
   { label: "Movies", to: "/movies" },
   { label: "Theaters", to: "/theaters" },
@@ -13,6 +13,9 @@ const menuLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useUser();
+  const { openSignIn } = useClerk();
+  const navigate = useNavigate();
 
   const renderMenuLinks = (isMobile = false) =>
     menuLinks.map(({ label, to }) => (
@@ -29,7 +32,6 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 left-0 z-50 w-full flex px-6 md:px-16 lg:px-36 py-5 ">
       <nav className="flex items-center justify-between w-full">
-
         {/* Logo */}
         <Link to="/" className="max-md:flex-1">
           <img src={assets.logo} alt="Logo" className="w-24 h-auto" />
@@ -43,9 +45,27 @@ const Navbar = () => {
         {/* Right Actions */}
         <div className="flex items-center gap-4">
           <SearchIcon className="w-6 h-6 max-md:hidden cursor-pointer text-white" />
-          <button className="login-gradient-radial text-black px-6 py-1 rounded-lg hover:opacity-90 transition">
-            Login
-          </button>
+
+          {!user ? (
+            <button
+              onClick={openSignIn}
+              className="login-gradient-radial text-black px-6 py-1 rounded-lg hover:opacity-90 transition"
+            >
+              Login
+            </button>
+          ) : (
+            <UserButton>
+              <UserButton.MenuItems>
+                <UserButton.Action
+                  label="My Bookings"
+                  labelIcon={<TicketPlus width={15} />}
+                  onClick={() => {
+                    navigate("/my-bookings");
+                  }}
+                />
+              </UserButton.MenuItems>
+            </UserButton>
+          )}
 
           {/* Hamburger Icon */}
           <MenuIcon
