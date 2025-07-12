@@ -1,14 +1,13 @@
-import React from "react";
 import MovieCard from "../components/MovieCard";
 const movies = [
   {
     _id: "1",
-    title: "Inception",
-    genre: "Sci-Fi / Thriller",
-    rating: 8.8,
-    releaseDate: "2010-07-16",
+    title: "The Shawshank Redemption",
+    genre: "Drama / Crime",
+    rating: 9.3,
+    releaseDate: "1994-09-23",
     posterUrl:
-      "https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg",
+      "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
   },
   {
     _id: "2",
