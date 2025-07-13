@@ -1,3 +1,8 @@
-<svg width="585" height="29" viewBox="0 0 585 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M585 29V17C585 17 406.824 0 292.5 0C178.176 0 0 17 0 17V29C0 29 175.5 12 292.5 12C404.724 12 585 29 585 29Z" fill="#F84565" fill-opacity="0.3"/>
+<?xml version="1.0" encoding="utf-8"?>
+<svg id="SvgjsSvg1001" width="288" height="288" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <g id="SvgjsG1008" transform="matrix(2.243233, 0, 0, 1, 0, 0)" style="">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585 29" width="288" height="288">
+      <path fill="#e5d46f" fill-opacity=".3" d="M585 29V17C585 17 406.824 0 292.5 0C178.176 0 0 17 0 17V29C0 29 175.5 12 292.5 12C404.724 12 585 29 585 29Z" class="svgShape colorf84565-0 selectable"/>
+    </svg>
+  </g>
 </svg>
