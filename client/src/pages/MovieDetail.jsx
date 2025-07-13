@@ -9,11 +9,17 @@ import {
   dummyShowsData,
   dummyCastsData,
 } from "../assets/assets";
-import { Star, Heart, Play, Clock, Calendar, Globe, Film } from "lucide-react";
+import {
+  Star,
+  Heart,
+  PlayCircle,
+  ArrowRight,
+  Clock,
+  Calendar,
+  Globe,
+  Film,
+} from "lucide-react";
 import timeFormat from "../lib/timeFormat";
-import { Move3dIcon } from "lucide-react";
-import { PlayCircle } from "lucide-react";
-import { ArrowRight } from "lucide-react";
 const MovieDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
