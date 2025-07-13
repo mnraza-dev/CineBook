@@ -43,7 +43,7 @@ const DateSelect = ({ dateTime, id }) => {
     scrollTo(0, 0);
   };
   return (
-    <div className="relative mt-8">
+    <div className="relative mt-8" id="date-select">
       <TitleSection title={"Choose Date"} className="text-xl" />
       <BlurCircle top="-400px" right="-200px" />
       <BlurCircle top="100px" left="-250px" />
@@ -70,6 +70,7 @@ const DateSelect = ({ dateTime, id }) => {
             <div className="flex gap-3 overflow-x-auto flex-1 justify-end">
               {Object.keys(dateTime).map((date) => (
                 <div
+                  onClick={() => setSelectedDate(date)}
                   key={date}
                   className={`flex-shrink-0 cursor-pointer rounded-lg p-3 min-w-[70px] text-center transition-all
                      ${

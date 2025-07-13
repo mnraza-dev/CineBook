@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import TitleSection from "../components/TitleSection";
 import DateSelect from "../components/DateSelect";
 import {
@@ -13,6 +13,7 @@ import { Move3dIcon } from "lucide-react";
 import { PlayCircle } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 const MovieDetail = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [show, setShow] = useState(false);
 
@@ -123,10 +124,13 @@ const MovieDetail = () => {
               <PlayCircle className="w-6 h-6 text-white" />
               Watch Trailer
             </button>
-            <button className="login-gradient-diagonal hover:bg-[#ddd47c] text-black h-12 px-6 py-0 text-sm rounded-lg flex items-center gap-2 hover:opacity-90 transition font-medium cursor-pointer">
+            <a
+              href="#date-select"
+              className="login-gradient-diagonal hover:bg-[#ddd47c] text-black h-12 px-6 py-0 text-sm rounded-lg flex items-center gap-2 hover:opacity-90 transition font-medium cursor-pointer"
+            >
               Buy Ticket
               <ArrowRight className="inline-block ml-2 w-4 h-4" />
-            </button>
+            </a>
             <button className="flex items-center justify-center h-12 w-12 rounded-lg transition-colors">
               <Heart className="w-6 h-6 text-red-200 cursor-pointer hover:text-red-600" />
             </button>
