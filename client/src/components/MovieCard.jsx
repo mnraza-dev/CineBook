@@ -11,7 +11,7 @@ const MovieCard = ({ movie }) => {
           navigate(`/movies/${movie._id}`);
           window.scrollTo(0, 0);
         }}
-        src={movie.posterUrl}
+        src={movie.poster_path}
         alt={movie.title}
         className="rounded-lg h-52 object-right-bottom cursor-pointer w-full object-cover"
       />
@@ -19,8 +19,8 @@ const MovieCard = ({ movie }) => {
       <div className="p-4 text-white">
         <h3 className="text-lg font-semibold truncate">{movie.title}</h3>
         <p className="text-sm text-gray-400">
-          {new Date(movie.releaseDate).getFullYear()} •{" "}
-          {movie.genres.split(" | ").slice(0, 2).join(" | ")} • {timeFormat(movie.runtime)}{" "}
+          {new Date(movie.release_date).getFullYear()} •{" "}
+          {movie.genres.map(genre => genre.name).slice(0, 2).join(" | ")} • {timeFormat(movie.runtime)}{" "}
           min
         </p>
         <div className="mt-2 flex items-center justify-between text-yellow-400">
@@ -36,7 +36,7 @@ const MovieCard = ({ movie }) => {
           </button>
           <div className="flex items-center gap-1">
             <StarIcon className="w-4 h-4" />
-            <span className="text-sm">{movie.rating}</span>
+            <span className="text-sm">{movie.vote_average?.toFixed(1) || "N/A"}</span>
           </div>
         </div>
       </div>

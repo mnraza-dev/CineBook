@@ -1,7 +1,7 @@
 import { ArrowRight, ArrowRightCircle } from "lucide-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { movies } from "../data/movies";
+import { dummyShowsData } from "../assets/assets";
 import MovieCard from "./MovieCard";
 import TitleSection from "./TitleSection";
 
@@ -11,7 +11,7 @@ const FeaturedSection = () => {
     <div className="px-6 md:px-16 lg:px-24 xl:px-44 overflow-hidden">
       <TitleSection title="Now Showing in Cinemas" to="/movies" />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
-        {movies.slice(0, 4).map((show) => (
+        {dummyShowsData.slice(0, 4).map((show) => (
           <MovieCard key={show._id} movie={show} />
         ))}
       </div>

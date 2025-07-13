@@ -24,6 +24,24 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* 🎨 Color style variants */
+.text-logo-color {
+  color: #905e26;
+}
+
+.text-logo-color-light {
+  color: #f5ec9b;
+}
+
+.text-logo-color-secondary {
+  color: #b99a45;
+}
+
+.text-logo-color-primary {
+  color: #1a1a1a;
+}
+
 /* 🖌️ Optional text gradient version with diagonal */
 .text-logo-gradient-diagonal { 
   background-image: linear-gradient(135deg, #905e26, #f5ec9b, #905e26);
