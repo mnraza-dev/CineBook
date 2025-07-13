@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import TitleSection from "../components/TitleSection";
 import DateSelect from "../components/DateSelect";
 import MovieCard from "../components/MovieCard";
+import Loading from "../components/Loading";
 import {
   dummyDateTimeData,
   dummyShowsData,
@@ -225,7 +226,7 @@ const MovieDetail = () => {
       </div>
     </div>
   ) : (
-    <div>Loading...</div>
+    <Loading />
   );
 };
 export default MovieDetail;
