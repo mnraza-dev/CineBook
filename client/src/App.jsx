@@ -15,11 +15,11 @@ const App = () => {
   return (
     <>
       <Toaster
-        position="top-right"
+        position="bottom-center"
         reverseOrder={false}
         toastOptions={{
           style: {
-            background: "#363636",
+            background: "#000",
             color: "#fff",
           },
         }}

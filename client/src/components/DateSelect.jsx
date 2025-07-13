@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import TitleSection from "./TitleSection";
 import BlurCircle from "./BlurCircle";
+import toast from "react-hot-toast";
 const DateSelect = () => {
   const [selectedDate, setSelectedDate] = useState(0);
   const [currentWeek, setCurrentWeek] = useState(0);
@@ -32,19 +33,22 @@ const DateSelect = () => {
     setCurrentWeek((prev) => prev + 1);
     setSelectedDate(0);
   };
-
+  const onBookhandler = () => {
+    if (!selectedDate) {
+      return toast("Please select a date");
+    }
+  };
   return (
     <div className="relative mt-8">
       <TitleSection title={"Choose Date"} className="text-xl" />
-      <BlurCircle  top="-400px" right="-200px" />
-      <BlurCircle  top="100px" left="-250px" />
-     
+      <BlurCircle top="-400px" right="-200px" />
+      <BlurCircle top="100px" left="-250px" />
+
       {/* Cool Box Container with Gradient */}
       <div className="mt-6  p-6 rounded-2xl bg-gradient-to-br from-[#23231d] via-[#000000] to-[#21211b] border border-gray-700/50 shadow-2xl">
         <div className="flex items-center justify-between gap-4">
           {/* First Div: Navigation and Date Cards */}
           <div className="flex items-center gap-4">
-
             {/* Previous Arrow */}
             <button
               onClick={handlePrevWeek}
@@ -99,7 +103,10 @@ const DateSelect = () => {
 
           {/* Second Div: Book Now Button */}
           <div className="flex-shrink-0">
-            <button className="login-gradient-diagonal hover:bg-[#ddd47c] text-black px-6 py-3 rounded-lg font-semibold text-base hover:opacity-90 transition-all cursor-pointer flex items-center gap-2 shadow-lg">
+            <button
+              onClick={onBookhandler}
+              className="login-gradient-diagonal hover:bg-[#ddd47c] text-black px-6 py-3 rounded-lg font-semibold text-base hover:opacity-90 transition-all cursor-pointer flex items-center gap-2 shadow-lg"
+            >
               Book Now
               <ArrowRight className="w-4 h-4" />
             </button>
