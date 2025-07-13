@@ -169,7 +169,9 @@ const MovieDetail = () => {
 
       {/* Showtimes Section */}
       <div className="mt-8">
-        <h2 className="text-xl font-semibold text-white mb-4">Showtimes</h2>
+      <TitleSection className="text-xl" title={"Showtimes"} />
+
+        {/* <h2 className="text-xl font-semibold text-white mb-4">Showtimes</h2> */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {Object.entries(dummyDateTimeData)
             .slice(0, 3)
@@ -199,6 +201,7 @@ const MovieDetail = () => {
             ))}
         </div>
       </div>
+      <TitleSection className="text-xl" title={"You May Also Like"} />
     </div>
   ) : (
     <div>Loading...</div>
