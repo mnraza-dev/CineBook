@@ -3,9 +3,11 @@ import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import TitleSection from "./TitleSection";
 import BlurCircle from "./BlurCircle";
 import toast from "react-hot-toast";
-const DateSelect = () => {
-  const [selectedDate, setSelectedDate] = useState(0);
+import { useNavigate } from "react-router-dom";
+const DateSelect = ({ dateTime, id }) => {
+  const [selectedDate, setSelectedDate] = useState(null);
   const [currentWeek, setCurrentWeek] = useState(0);
+  const navigate = useNavigate();
 
   const generateDates = (weekOffset = 0) => {
     const dates = [];
@@ -37,6 +39,8 @@ const DateSelect = () => {
     if (!selectedDate) {
       return toast("Please select a date");
     }
+    navigate(`/movies/${id}/${selectedDate}`);
+    scrollTo(0, 0);
   };
   return (
     <div className="relative mt-8">
@@ -64,32 +68,31 @@ const DateSelect = () => {
 
             {/* Date Cards */}
             <div className="flex gap-3 overflow-x-auto flex-1 justify-end">
-              {generateDates(currentWeek).map((date, index) => {
-                const isToday = currentWeek === 0 && index === 0;
-                const isSelected = index === selectedDate;
-
-                return (
-                  <div
-                    key={index}
-                    onClick={() => handleDateSelect(index)}
-                    className={`flex-shrink-0 cursor-pointer rounded-lg p-3 min-w-[70px] text-center transition-all ${
-                      isSelected
-                        ? "login-gradient-diagonal text-black font-semibold shadow-lg"
-                        : isToday
-                        ? "bg-transparent text-white border-2 border-logo-color-light"
-                        : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600/30"
-                    }`}
-                  >
-                    <div className="text-xs font-medium mb-1">
-                      {date.toLocaleDateString("en-US", { weekday: "short" })}
-                    </div>
-                    <div className="text-xl font-bold">{date.getDate()}</div>
-                    <div className="text-xs opacity-75">
-                      {date.toLocaleDateString("en-US", { month: "short" })}
-                    </div>
+              {Object.keys(dateTime).map((date) => (
+                <div
+                  key={date}
+                  className={`flex-shrink-0 cursor-pointer rounded-lg p-3 min-w-[70px] text-center transition-all
+                     ${
+                       selectedDate === date
+                         ? " login-gradient-diagonal text-black font-semibold shadow-lg"
+                         : "bg-transparent text-white border-2 border-logo-color-light"
+                     }}`}
+                >
+                  <div className="text-xs font-medium mb-1">
+                    {new Date(date).toLocaleDateString("en-US", {
+                      weekday: "short",
+                    })}
                   </div>
-                );
-              })}
+                  <div className="text-xl font-bold">
+                    {new Date(date).getDate()}
+                  </div>
+                  <div className="text-xs opacity-75">
+                    {new Date(date).toLocaleDateString("en-US", {
+                      month: "short",
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Next Arrow */}

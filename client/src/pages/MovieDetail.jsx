@@ -161,7 +161,7 @@ const MovieDetail = () => {
       </div>
 
       {/* Date Selection Component */}
-      <DateSelect />
+      <DateSelect dateTime={show.dateTime} id={id} />
 
       {/* Showtimes Section */}
       <div className="mt-8">
