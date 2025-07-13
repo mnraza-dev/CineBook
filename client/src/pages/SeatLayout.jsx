@@ -8,6 +8,7 @@ import { Clock } from "lucide-react";
 import TitleSection from "../components/TitleSection";
 import toast from "react-hot-toast";
 import BlurCircle from "../components/BlurCircle";
+import { ArrowRightIcon } from "lucide-react";
 
 const SeatLayout = () => {
   const groupRows = [
@@ -139,6 +140,19 @@ const SeatLayout = () => {
               <div key={idx}>{group.map((row) => renderSeats(row))}</div>
             ))}
           </div>
+        </div>
+
+        <div className="flex items-center justify-center mt-16">
+          <button
+            onClick={() => {
+              navigate("/my-bookings");
+              scrollTo(0, 0);
+            }}
+            className="login-gradient-diagonal hover:bg-[#f5ec9b] border-2 border-[#9d9974] hover:border-2 hover:border-[#f5ec9b] text-black px-6 py-1 text-sm  rounded-md flex items-center gap-2 hover:opacity-90 transition font-medium cursor-pointer"
+          >
+            Proceed to Checkout
+            <ArrowRightIcon className="w-4 h-4 " />
+          </button>
         </div>
       </div>
     </div>
