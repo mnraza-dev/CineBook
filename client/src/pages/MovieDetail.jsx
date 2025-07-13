@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TitleSection from "../components/TitleSection";
+import DateSelect from "../components/DateSelect";
 import {
   dummyDateTimeData,
   dummyShowsData,
@@ -10,10 +11,11 @@ import { Star, Heart, Play, Clock, Calendar, Globe, Film } from "lucide-react";
 import timeFormat from "../lib/timeFormat";
 import { Move3dIcon } from "lucide-react";
 import { PlayCircle } from "lucide-react";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 const MovieDetail = () => {
   const { id } = useParams();
   const [show, setShow] = useState(false);
+
   const getShow = () => {
     const show = dummyShowsData.find((show) => show._id === id);
     setShow({
@@ -21,6 +23,7 @@ const MovieDetail = () => {
       dateTime: dummyDateTimeData,
     });
   };
+
   useEffect(() => {
     getShow();
   }, [id]);
@@ -157,60 +160,8 @@ const MovieDetail = () => {
         </div>
       </div>
 
-      {/* Choose Date Section */}
-      <div className="mt-8">
-        <TitleSection title={"Choose the Date"} className="text-xl" />
-        
-        <div className="flex items-center gap-4 mt-4">
-          {/* Previous Arrow */}
-          <button className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
-            <ChevronLeft className="w-5 h-5 text-white" />
-          </button>
-
-          {/* Date Cards */}
-          <div className="flex gap-3 overflow-x-auto flex-1">
-            {Array.from({ length: 7 }, (_, index) => {
-              const date = new Date();
-              date.setDate(date.getDate() + index);
-              const isToday = index === 0;
-              
-              return (
-                <div
-                  key={index}
-                  className={`flex-shrink-0 cursor-pointer rounded-lg p-4 min-w-[80px] text-center transition-all ${
-                    isToday
-                      ? "bg-logo-gradient text-black font-semibold"
-                      : "bg-gray-800 hover:bg-gray-700 text-white"
-                  }`}
-                >
-                  <div className="text-xs font-medium mb-1">
-                    {date.toLocaleDateString("en-US", { weekday: "short" })}
-                  </div>
-                  <div className="text-lg font-bold">
-                    {date.getDate()}
-                  </div>
-                  <div className="text-xs opacity-75">
-                    {date.toLocaleDateString("en-US", { month: "short" })}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Next Arrow */}
-          <button className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors">
-            <ChevronRight className="w-5 h-5 text-white" />
-          </button>
-        </div>
-
-        {/* Book Now Button */}
-        <div className="mt-6 text-center">
-          <button className="login-gradient-diagonal hover:bg-[#ddd47c] text-black px-8 py-3 rounded-lg font-semibold text-lg hover:opacity-90 transition-all cursor-pointer flex items-center gap-2 mx-auto">
-            Book Now
-            <ArrowRight className="w-5 h-5" />
-          </button>
-        </div>
-      </div>
+      {/* Date Selection Component */}
+      <DateSelect />
 
       {/* Showtimes Section */}
       <div className="mt-8">
