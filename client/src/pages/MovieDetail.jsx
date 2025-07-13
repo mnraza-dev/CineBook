@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import TitleSection from "../components/TitleSection";
 import DateSelect from "../components/DateSelect";
+import MovieCard from "../components/MovieCard";
 import {
   dummyDateTimeData,
   dummyShowsData,
@@ -19,10 +20,12 @@ const MovieDetail = () => {
 
   const getShow = () => {
     const show = dummyShowsData.find((show) => show._id === id);
-    setShow({
-      movie: show,
-      dateTime: dummyDateTimeData,
-    });
+    if (show) {
+      setShow({
+        movie: show,
+        dateTime: dummyDateTimeData,
+      });
+    }
   };
 
   useEffect(() => {
@@ -169,7 +172,7 @@ const MovieDetail = () => {
 
       {/* Showtimes Section */}
       <div className="mt-8">
-      <TitleSection className="text-xl" title={"Showtimes"} />
+        <TitleSection className="text-xl" title={"Showtimes"} />
 
         {/* <h2 className="text-xl font-semibold text-white mb-4">Showtimes</h2> */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -202,6 +205,24 @@ const MovieDetail = () => {
         </div>
       </div>
       <TitleSection className="text-xl" title={"You May Also Like"} />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+        {dummyShowsData.map((movie) => (
+          <MovieCard key={movie._id} movie={movie} />
+        ))}
+      </div>
+      <div className="flex items-center justify-center mt-6">
+        <button
+          onClick={() => {
+            navigate("/movies");
+            scrollTo(0, 0);
+          }}
+          className="login-gradient-diagonal hover:bg-[#f5ec9b] border-2 border-[#9d9974] hover:border-2 hover:border-[#f5ec9b] text-black px-6 py-1 text-sm  rounded-md flex items-center gap-2 hover:opacity-90 transition font-medium cursor-pointer"
+        >
+          See More
+          {/* <ArrowRightCircle className="inline-block ml-2 w-4 h-4" />  */}
+        </button>
+      </div>
     </div>
   ) : (
     <div>Loading...</div>
