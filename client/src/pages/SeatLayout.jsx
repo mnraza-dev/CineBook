@@ -27,9 +27,9 @@ const SeatLayout = () => {
     getShow();
   }, [id]);
   return show ? (
-    <div className="flex flex-col md:flex-row px-6 md:px-16 lg:px-40 py-20 md:pt-10">
+    <div className="flex flex-col md:flex-row px-6 md:px-16 lg:px-20 py-20 md:pt-10 justify-between">
       {/* Available Timings */}
-      <div className="md:w-2/5 mb-8 md:mb-0 md:pr-8">
+      <div className="md:w-1/4 mb-8 md:mb-0 md:pr-8">
         <TitleSection
           title="Available Timings"
           className="text-xl text-center ml-12"
@@ -76,11 +76,375 @@ const SeatLayout = () => {
             Select Your Seats
           </h2>
         </div>
-        <p className="text-center text-md">All eyes this way please! </p>
-        <div className="bg-gray-800 rounded-lg p-6">
-          <p className="text-gray-400 text-center">
-            Seat layout will be implemented here
-          </p>
+        <p className="text-center text-md mb-6">All eyes this way please! </p>
+        
+        {/* Seat Layout */}
+        <div className="rounded-lg p-6">
+          <div className="space-y-4">
+            {/* Row A */}
+            <div className="flex justify-center gap-2">
+              <span className="text-white font-semibold w-8 text-center">A</span>
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`A-${index + 1}`}
+                  onClick={() => {
+                    const seatId = `A${index + 1}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`A${index + 1}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+
+            {/* Row B */}
+            <div className="flex justify-center gap-2">
+              <span className="text-white font-semibold w-8 text-center">B</span>
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`B-${index + 1}`}
+                  onClick={() => {
+                    const seatId = `B${index + 1}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`B${index + 1}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+
+            {/* Row C */}
+            <div className="flex justify-center gap-2">
+              <span className="text-white font-semibold w-8 text-center">C</span>
+              {/* First 9 seats */}
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`C-${index + 1}`}
+                  onClick={() => {
+                    const seatId = `C${index + 1}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`C${index + 1}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              {/* Space between seat groups */}
+              <div className="w-8"></div>
+              {/* Last 9 seats */}
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`C-${index + 10}`}
+                  onClick={() => {
+                    const seatId = `C${index + 10}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`C${index + 10}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 10}
+                </button>
+              ))}
+            </div>
+
+            {/* Row D */}
+            <div className="flex justify-center gap-2">
+              <span className="text-white font-semibold w-8 text-center">D</span>
+              {/* First 9 seats */}
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`D-${index + 1}`}
+                  onClick={() => {
+                    const seatId = `D${index + 1}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`D${index + 1}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              {/* Space between seat groups */}
+              <div className="w-8"></div>
+              {/* Last 9 seats */}
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`D-${index + 10}`}
+                  onClick={() => {
+                    const seatId = `D${index + 10}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`D${index + 10}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 10}
+                </button>
+              ))}
+            </div>
+
+            {/* Space after Row D */}
+            <div className="h-4"></div>
+
+            {/* Row E */}
+            <div className="flex justify-center gap-2">
+              <span className="text-white font-semibold w-8 text-center">E</span>
+              {/* First 9 seats */}
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`E-${index + 1}`}
+                  onClick={() => {
+                    const seatId = `E${index + 1}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`E${index + 1}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              {/* Space between seat groups */}
+              <div className="w-8"></div>
+              {/* Last 9 seats */}
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`E-${index + 10}`}
+                  onClick={() => {
+                    const seatId = `E${index + 10}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`E${index + 10}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 10}
+                </button>
+              ))}
+            </div>
+                      </div>
+
+            {/* Space after Row E */}
+            <div className="h-4"></div>
+
+            {/* Row F */}
+            <div className="flex justify-center gap-2">
+              <span className="text-white font-semibold w-8 text-center">F</span>
+              {/* First 9 seats */}
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`F-${index + 1}`}
+                  onClick={() => {
+                    const seatId = `F${index + 1}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`F${index + 1}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              {/* Space between seat groups */}
+              <div className="w-8"></div>
+              {/* Last 9 seats */}
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`F-${index + 10}`}
+                  onClick={() => {
+                    const seatId = `F${index + 10}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`F${index + 10}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 10}
+                </button>
+              ))}
+            </div>
+
+            {/* Space after Row F */}
+            <div className="h-4"></div>
+
+            {/* Row G */}
+            <div className="flex justify-center gap-2">
+              <span className="text-white font-semibold w-8 text-center">G</span>
+              {/* First 9 seats */}
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`G-${index + 1}`}
+                  onClick={() => {
+                    const seatId = `G${index + 1}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`G${index + 1}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              {/* Space between seat groups */}
+              <div className="w-8"></div>
+              {/* Last 9 seats */}
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`G-${index + 10}`}
+                  onClick={() => {
+                    const seatId = `G${index + 10}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`G${index + 10}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 10}
+                </button>
+              ))}
+            </div>
+
+            {/* Space after Row G */}
+            <div className="h-4"></div>
+
+            {/* Row H */}
+            <div className="flex justify-center gap-2">
+              <span className="text-white font-semibold w-8 text-center">H</span>
+              {/* First 9 seats */}
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`H-${index + 1}`}
+                  onClick={() => {
+                    const seatId = `H${index + 1}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`H${index + 1}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              {/* Space between seat groups */}
+              <div className="w-8"></div>
+              {/* Last 9 seats */}
+              {Array.from({ length: 9 }, (_, index) => (
+                <button
+                  key={`H-${index + 10}`}
+                  onClick={() => {
+                    const seatId = `H${index + 10}`;
+                    setSelectedSeats(prev => 
+                      prev.includes(seatId) 
+                        ? prev.filter(s => s !== seatId)
+                        : [...prev, seatId]
+                    );
+                  }}
+                  className={`w-8 h-8 px-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center ${
+                    selectedSeats.includes(`H${index + 10}`)
+                      ? "login-gradient-diagonal text-black shadow-lg"
+                      : "bg-transparent hover:bg-gray-700/20 text-white border border-gray-600"
+                  }`}
+                >
+                  {index + 10}
+                </button>
+              ))}
+            </div>
+
+            {/* Selected Seats Display */}
+            {selectedSeats.length > 0 && (
+              <div className="mt-6 p-4 bg-gray-700 rounded-lg">
+                <p className="text-white/80 font-medium mb-2">Selected Seats:</p>
+                <p className="text-logo-color-light/70">{selectedSeats.join(", ")}</p>
+              </div>
+            )}
         </div>
       </div>
     </div>
