@@ -4,6 +4,7 @@ import { LayoutDashboardIcon } from "lucide-react";
 import { ListIcon } from "lucide-react";
 import { PlusSquareIcon } from "lucide-react";
 import { ListCollapseIcon } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 const AdminSidebar = () => {
   const user = {
@@ -12,7 +13,7 @@ const AdminSidebar = () => {
     imageUrl: assets.profile,
   };
   const adminNavLinks = [
-    { name: " Dashboard", path: "/admin", icon: LayoutDashboardIcon },
+    { name: "Dashboard", path: "/admin", icon: LayoutDashboardIcon },
     { name: "Add Shows", path: "/admin/add-shows", icon: PlusSquareIcon },
     { name: "List Shows", path: "/admin/list-shows", icon: ListIcon },
     {
@@ -28,7 +29,34 @@ const AdminSidebar = () => {
         src={user.imageUrl}
         alt="sidebar"
       />
-      
+      <p className="mt-2 text-base max-md:hidden">
+        {user.firstName} {user.lastName}{" "}
+      </p>
+      <div className="w-full">
+        {adminNavLinks.map((link, idx) => (
+          <NavLink
+            key={idx}
+            to={link.path}
+            className={({ isActive }) =>
+              ` relative flex items-center max-md:justify-center gap-2 w-full py-2.5 min-md:pl-10 first:mt-6 text-gray-400 ${
+                isActive && " bg-primary/15 text-primary group"
+              }`
+            }
+          >
+            {({ isActive }) => {
+              <>
+                <link.icon className="w-5 h-5" />
+                <p className="max-md:hidden">{link.name}</p>
+                <span
+                  className={` w-1.5 h-10 rounded-l right-0 absolute ${
+                    isActive && " bg-primary"
+                  }`}
+                ></span>
+              </>;
+            }}
+          </NavLink>
+        ))}
+      </div>
     </div>
   );
 };
