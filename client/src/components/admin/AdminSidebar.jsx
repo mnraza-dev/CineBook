@@ -51,7 +51,7 @@ const AdminSidebar = () => {
                 <p className="max-md:hidden">{link.name}</p>
                 {/* Right accent bar for active link */}
                 {isActive && (
-                  <span className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-2 rounded-r bg-[#b99a45] shadow-lg"></span>
+                  <span className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-2 rounded-r bg-gradient-to-b from-[#223a5e] via-[#905e26] to-[#f5ec9b] shadow-lg"></span>
                 )}
               </>
             )}
