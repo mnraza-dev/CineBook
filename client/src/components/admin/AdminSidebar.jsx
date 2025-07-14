@@ -38,22 +38,23 @@ const AdminSidebar = () => {
             key={idx}
             to={link.path}
             className={({ isActive }) =>
-              ` relative flex items-center max-md:justify-center gap-2 w-full py-2.5 min-md:pl-10 first:mt-6 text-gray-400 ${
-                isActive && " bg-primary/15 text-primary group"
-              }`
+              `relative flex items-center max-md:justify-center gap-2 w-full py-2.5 min-md:pl-10 first:mt-6 rounded-md transition-colors duration-200
+              ${isActive
+                ? 'sidebar-active-gradient text-black font-semibold border-r-8 border-[#b99a45] shadow'
+                : 'text-gray-500 hover:bg-[#f5ec9b] hover:text-black'}
+              `
             }
           >
-            {({ isActive }) => {
+            {({ isActive }) => (
               <>
                 <link.icon className="w-5 h-5" />
                 <p className="max-md:hidden">{link.name}</p>
-                <span
-                  className={` w-1.5 h-10 rounded-l right-0 absolute ${
-                    isActive && " bg-primary"
-                  }`}
-                ></span>
-              </>;
-            }}
+                {/* Right accent bar for active link */}
+                {isActive && (
+                  <span className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-2 rounded-r bg-[#b99a45] shadow-lg"></span>
+                )}
+              </>
+            )}
           </NavLink>
         ))}
       </div>
