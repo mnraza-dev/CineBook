@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Loading from "../components/Loading";
 import isoTimeFormat from "../lib/isoTimeFormat";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { assets, dummyDateTimeData, dummyShowsData } from "../assets/assets";
 import { Clock } from "lucide-react";
 import TitleSection from "../components/TitleSection";
@@ -23,6 +23,7 @@ const SeatLayout = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [selectedTime, setSelectedTime] = useState(null);
   const [show, setShow] = useState(null);
+  const navigate = useNavigate();
 
   const getShow = () => {
     const show = dummyShowsData.find((show) => show._id === id);
