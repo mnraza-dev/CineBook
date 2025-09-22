@@ -59,23 +59,17 @@ const AdminSidebar = () => {
               }`
             }
           >
-
             {({ isActive }) => (
               <>
                 <link.icon
-                  className={`w-5 h-5 ${isActive ? 'text-[#905e26]' : 'text-white'}`}
+                  className={`w-6 h-6 ${isActive ? 'text-[#905e26]' : 'text-white'}`}
                 />
-                <span className="font-medium">{link.name}</span>
+                <span className="font-medium text-base">{link.name}</span>
               </>
             )}
-
           </NavLink>
         ))}
       </div>
-
-
-
-
     </div>
   )
 }
