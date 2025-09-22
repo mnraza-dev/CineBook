@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import timeFormat from "../lib/timeFormat";
 const MovieCard = ({ movie }) => {
   const navigate = useNavigate();
-
   return (
     <div className="w-full max-w-xs bg-[#1a1a1a] rounded-xl overflow-hidden shadow-lg hover:scale-[1.03] transition-transform duration-300">
       <img

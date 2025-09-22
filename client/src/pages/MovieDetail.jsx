@@ -145,13 +145,11 @@ const MovieDetail = () => {
               <Heart className="w-6 h-6 text-red-200 cursor-pointer hover:text-red-600" />
             </button>
           </div>
-
           {/* Cast Section */}
         </div>
       </div>
       <div className="mt-8">
         <TitleSection title={"Movie Cast"} className="text-xl" />
-
         <div className="flex gap-4 overflow-x-auto pb-4">
           {dummyCastsData.slice(0, 8).map((cast, index) => (
             <div key={index} className="flex-shrink-0 text-center">

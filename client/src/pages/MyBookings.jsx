@@ -105,7 +105,7 @@ const MyBookings = () => {
                           Total Amount
                         </h3>
                         <p className="text-logo-gradient font-bold text-4xl">
-                          {currency} {item.amount || "25.00"}
+                         ₹ {currency} {item.amount || "25.00"}
                         </p>
                       </div>
                     </div>
