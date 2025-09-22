@@ -50,9 +50,9 @@ const AdminSidebar = () => {
           <NavLink
             key={link.id}
             to={link.path}
-            end={link.path === "/admin"}
+            end
             className={({ isActive }) =>
-              `flex items-center gap-3 px-6 py-3  transition-all duration-200 border-r-4
+              `flex items-center gap-3 px-6 py-3  transition-all duration-200 border-r-5
         ${isActive
                 ? "text-logo-gradient shadow-md border-[#905e26] login-gradient"
                 : "bg-gray-800/60 text-gray-300 hover:bg-gray-700 hover:text-white border-transparent"
