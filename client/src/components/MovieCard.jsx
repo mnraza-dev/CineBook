@@ -12,7 +12,7 @@ const MovieCard = ({ movie }) => {
         }}
         src={movie.poster_path}
         alt={movie.title}
-        className="rounded-lg h-52 object-right-bottom cursor-pointer w-full object-cover"
+        className="rounded-lg h-auto md:object-center cursor-pointer w-full object-center"
       />
 
       <div className="p-4 text-white">
