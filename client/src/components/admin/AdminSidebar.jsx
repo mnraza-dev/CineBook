@@ -1,12 +1,20 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { assets } from '../../assets/assets'
 import {
   LayoutDashboardIcon,
   PlusCircleIcon,
   ListIcon,
-  CalendarCheckIcon
+  CalendarCheckIcon,
+  LogOutIcon
 } from "lucide-react";
 const AdminSidebar = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem('token');
+    } catch {}
+    navigate('/');
+  }
 
   const user = {
     firstName: "Admin",
@@ -69,6 +77,15 @@ const AdminSidebar = () => {
             )}
           </NavLink>
         ))}
+      </div>
+      <div className='w-full mt-auto p-4 mb-8'>
+        <button
+          onClick={handleLogout}
+          className='w-full login-gradient-diagonal hover:bg-[#f5ec9b] text-black px-4 py-2 rounded-lg font-semibold text-sm hover:opacity-90 transition cursor-pointer flex items-center justify-center gap-2'
+        >
+          <LogOutIcon className='w-4 h-4' />
+          Logout
+        </button>
       </div>
     </div>
   )
