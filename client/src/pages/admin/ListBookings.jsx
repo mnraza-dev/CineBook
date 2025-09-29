@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import TitleSection from '../../components/TitleSection';
 import Loading from '../../components/Loading';
-import { dummyBookingData, dummyShowsData } from "../../assets/assets";
+import { dummyBookingData } from "../../assets/assets";
 import dateFormat from '../../lib/dateFormat';
 
 const ListBookings = () => {
@@ -36,11 +36,11 @@ const ListBookings = () => {
             </thead>
             <tbody>
               {bookings.map((booking, idx) => (
-                <tr key={booking._id || idx} className="border-b border-gray-700 hover:bg-gray-800 transition">
+                <tr key={`${booking._id}-${idx}`} className="border-b border-gray-700 hover:bg-gray-800 transition">
                   <td className="py-3 px-4">{booking.user?.name || "N/A"}</td>
                   <td className="py-3 px-4">{booking.show?.movie?.title || "N/A"}</td>
                   <td className="py-3 px-4">{dateFormat(booking.show?.showDateTime)}</td>
-                  <td className="py-3 px-4">{booking.bookedSeats.join(", ")}</td>
+                  <td className="py-3 px-4">{(booking.bookedSeats || []).join(", ")}</td>
                   <td className="py-3 px-4"><span className='mr-1'>{currency}</span>{booking.amount}</td>
                 </tr>
               ))}
