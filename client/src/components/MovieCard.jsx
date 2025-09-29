@@ -1,4 +1,4 @@
-import { ArrowRight, StarIcon } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import timeFormat from "../lib/timeFormat";
 const MovieCard = ({ movie }) => {
@@ -18,9 +18,8 @@ const MovieCard = ({ movie }) => {
       <div className="p-4 text-white">
         <h3 className="text-lg font-semibold truncate">{movie.title}</h3>
         <p className="text-sm text-gray-400">
-          {new Date(movie.release_date).getFullYear()} •{" "}
-          {movie.genres.map(genre => genre.name).slice(0, 2).join(" | ")} • {timeFormat(movie.runtime)}{" "}
-          min
+          {(movie.release_date ? new Date(movie.release_date).getFullYear() : "N/A")} •{" "}
+          {(movie.genres || []).map(genre => genre.name).slice(0, 2).join(" | ")} • {timeFormat(movie.runtime)}
         </p>
         <div className="mt-2 flex items-center justify-between text-yellow-400">
           <button
@@ -34,7 +33,7 @@ const MovieCard = ({ movie }) => {
             <ArrowRight className="inline-block ml-2 w-4 h-4" />
           </button>
           <div className="flex items-center gap-1">
-            <StarIcon className="w-4 h-4" />
+            <Star className="w-4 h-4" />
             <span className="text-sm">{movie.vote_average?.toFixed(1) || "N/A"}</span>
           </div>
         </div>
