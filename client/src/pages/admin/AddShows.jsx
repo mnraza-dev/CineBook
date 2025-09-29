@@ -21,15 +21,9 @@ const AddShows = () => {
     if (!showId) return toast.error('Please select a time')
     if (!price || Number(price) <= 0) return toast.error('Please enter a valid price')
 
-    // Simulate API call
     const payload = { movieId, date, showId, price: Number(price) }
-    // In real app, POST to backend here
-    // await api.post('/admin/shows', payload)
-
     console.log('Add Show payload:', payload)
     toast.success('Show added successfully')
-
-    // Reset form
     setMovieId('')
     setDate('')
     setShowId('')
