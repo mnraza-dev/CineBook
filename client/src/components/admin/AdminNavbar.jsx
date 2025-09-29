@@ -6,6 +6,10 @@ const AdminNavbar = () => {
       <Link to="/admin">
         <img src={assets.logo} alt="logo" className='w-36 h-24' />
       </Link>
+      <div className='text-right hidden sm:block'>
+        <p className='text-white text-sm font-medium'>Admin</p>
+        <p className='text-xs text-gray-400'>admin@cinebook.com</p>
+      </div>
     </div>
   )
 }
