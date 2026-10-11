@@ -1,115 +1,46 @@
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import React, { useMemo, useState } from 'react'
-import TitleSection from '../../components/TitleSection'
-import { dummyShowsData, dummyDateTimeData } from '../../assets/assets'
-import toast from 'react-hot-toast'
-
-const AddShows = () => {
-  const [movieId, setMovieId] = useState('')
-  const [date, setDate] = useState('')
-  const [showId, setShowId] = useState('')
-  const [price, setPrice] = useState('')
-
-  const timesForSelectedDate = useMemo(() => {
-    if (!date) return []
-    return (dummyDateTimeData[date] || [])
-  }, [date])
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (!movieId) return toast.error('Please select a movie')
-    if (!date) return toast.error('Please select a date')
-    if (!showId) return toast.error('Please select a time')
-    if (!price || Number(price) <= 0) return toast.error('Please enter a valid price')
-
-    const payload = { movieId, date, showId, price: Number(price) }
-    console.log('Add Show payload:', payload)
-    toast.success('Show added successfully')
-    setMovieId('')
-    setDate('')
-    setShowId('')
-    setPrice('')
+import { useState, type FormEvent } from 'react';
+import toast from 'react-hot-toast';
+import { useResource } from '@/hooks/useResource';
+import { useApi, errorMessage } from '@/lib/api';
+import type { Movie } from '@/types';
+import ResourceState from '@/components/ResourceState';
+import TitleSection from '@/components/TitleSection';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+export default function AddShows() {
+  const movies = useResource<Movie[]>('/admin/movies');
+  const api = useApi();
+  const [busy, setBusy] = useState(false);
+  async function submit(event: FormEvent<HTMLFormElement>, kind: 'movie' | 'show') {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const values = Object.fromEntries(new FormData(form));
+    setBusy(true);
+    try {
+      const body = kind === 'show' ? { movieId: values.movieId, showDateTime: new Date(String(values.showDateTime)).toISOString(), showPrice: Number(values.showPrice) }
+        : { title: values.title, overview: values.overview, poster_path: values.poster_path, runtime: Number(values.runtime), original_language: values.original_language || 'en', ...(values.trailerUrl ? { trailerUrl: values.trailerUrl } : {}) };
+      await api(`/admin/${kind === 'movie' ? 'movies' : 'shows'}`, { method: 'POST', body: JSON.stringify(body) });
+      toast.success(kind === 'movie' ? 'Movie saved' : 'Show scheduled'); form.reset(); movies.reload();
+    } catch (error) { toast.error(errorMessage(error)); }
+    finally { setBusy(false); }
   }
-
-  return (
-    <div className="p-6 space-y-4">
-      <TitleSection title={'Add Shows'} className='text-3xl' />
-
-      <form onSubmit={onSubmit} className="space-y-4 max-w-2xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm text-gray-300 mb-1">Movie</label>
-            <select
-              value={movieId}
-              onChange={(e) => setMovieId(e.target.value)}
-              className="w-full bg-[#111] border border-gray-700 rounded-lg p-2 text-white"
-            >
-              <option value="">Select a movie</option>
-              {dummyShowsData.map(m => (
-                <option key={m._id} value={m._id}>{m.title}</option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm text-gray-300 mb-1">Date</label>
-            <select
-              value={date}
-              onChange={(e) => {
-                setDate(e.target.value)
-                setShowId('')
-              }}
-              className="w-full bg-[#111] border border-gray-700 rounded-lg p-2 text-white"
-            >
-              <option value="">Select a date</option>
-              {Object.keys(dummyDateTimeData).map(d => (
-                <option key={d} value={d}>{new Date(d).toLocaleDateString()}</option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm text-gray-300 mb-1">Time</label>
-            <select
-              value={showId}
-              onChange={(e) => setShowId(e.target.value)}
-              disabled={!date}
-              className="w-full bg-[#111] border border-gray-700 rounded-lg p-2 text-white disabled:opacity-60"
-            >
-              <option value="">{date ? 'Select a time' : 'Select date first'}</option>
-              {timesForSelectedDate.map(t => (
-                <option key={t.showId} value={t.showId}>
-                  {new Date(t.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-sm text-gray-300 mb-1">Price</label>
-            <Input
-              type="number"
-              min="1"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              placeholder="e.g. 59"
-              className="w-full bg-[#111] border border-gray-700 rounded-lg p-2 text-white"
-            />
-          </div>
-        </div>
-
-        <div className="pt-2">
-          <Button
-            type="submit"
-            className="login-gradient-diagonal hover:bg-[#f5ec9b] text-black px-6 py-2 rounded-lg font-semibold text-base hover:opacity-90 transition cursor-pointer"
-          >
-            Add Show
-          </Button>
-        </div>
-      </form>
-    </div>
-  )
+  return <section className="space-y-8 max-w-2xl"><TitleSection title="Movies & Shows" />
+    <form onSubmit={e => submit(e, 'movie')} className="space-y-4 border border-input p-6 rounded-xl"><h2 className="text-xl">Add a movie</h2>
+      <label className="block">Title<Input name="title" required maxLength={200} /></label>
+      <label className="block">Overview<textarea name="overview" maxLength={5000} className="w-full rounded-md border border-input p-3" /></label>
+      <label className="block">Poster URL<Input name="poster_path" type="url" required /></label>
+      <label className="block">Runtime (minutes)<Input name="runtime" type="number" min={1} max={600} required /></label>
+      <label className="block">Language code<Input name="original_language" defaultValue="en" minLength={2} maxLength={10} /></label>
+      <label className="block">YouTube trailer URL (optional)<Input name="trailerUrl" type="url" /></label>
+      <Button disabled={busy}>Save movie</Button>
+    </form>
+    <ResourceState {...movies} retry={movies.reload} />
+    <form onSubmit={e => submit(e, 'show')} className="space-y-4 border border-input p-6 rounded-xl"><h2 className="text-xl">Schedule a show</h2>
+      <label className="block">Movie<select name="movieId" required className="w-full bg-background border border-input p-3 rounded-md"><option value="">Select movie</option>{movies.data?.map(movie => <option key={movie._id} value={movie._id}>{movie.title}</option>)}</select></label>
+      <label className="block">Show date and time (your local timezone)<Input type="datetime-local" name="showDateTime" required /></label>
+      <label className="block">Price per seat ({import.meta.env.VITE_CURRENCY || '₹'})<Input type="number" name="showPrice" min="0.01" step="0.01" required /></label>
+      <p className="text-sm text-gray-400">Schedule at least one hour ahead. The cinema timezone is used to group dates for customers.</p>
+      <Button disabled={busy || !movies.data?.length}>Schedule show</Button>
+    </form>
+  </section>;
 }
-
-export default AddShows

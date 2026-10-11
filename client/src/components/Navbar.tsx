@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useResource } from "@/hooks/useResource";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
@@ -6,8 +7,6 @@ import { MenuIcon, SearchIcon, TicketPlus, XIcon } from "lucide-react";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 const menuLinks = [
   { label: "Movies", to: "/movies" },
-  { label: "Theaters", to: "/theaters" },
-  { label: "Releases", to: "/releases" },
   { label: "My Bookings", to: "/my-bookings" },
   { label: "Favorites", to: "/favorite" },
 ];
@@ -17,6 +16,7 @@ const Navbar = () => {
   const { user } = useUser();
   const { openSignIn } = useClerk();
   const navigate = useNavigate();
+  const me = useResource<{ isAdmin: boolean }>(user ? "/me" : null);
 
   const renderMenuLinks = (isMobile = false) =>
     menuLinks.map(({ label, to }) => (
@@ -41,11 +41,12 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-6 items-center text-white font-medium bg-white/10 rounded-full px-6 py-2">
           {renderMenuLinks()}
+          {me.data?.isAdmin && <Link to="/admin">Admin</Link>}
         </div>
 
         {/* Right Actions */}
         <div className="flex items-center gap-4">
-          <SearchIcon className="w-6 h-6 max-md:hidden cursor-pointer text-white" />
+          <Button variant="ghost" size="icon" aria-label="Search movies" onClick={() => navigate("/movies")}><SearchIcon /></Button>
 
           {!user ? (
             <Button
@@ -69,10 +70,7 @@ const Navbar = () => {
           )}
 
           {/* Hamburger Icon */}
-          <MenuIcon
-            className="md:hidden w-8 h-8 cursor-pointer text-white"
-            onClick={() => setIsOpen(true)}
-          />
+          <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu" onClick={() => setIsOpen(true)}><MenuIcon /></Button>
         </div>
       </nav>
 
@@ -81,15 +79,13 @@ const Navbar = () => {
         <div className="fixed inset-0 bg-black/90 z-50 p-6 flex flex-col gap-6 text-white text-lg font-medium md:hidden">
           <div className="flex justify-between items-center mb-6">
             <img src={assets.logo} alt="Logo" className="w-24 h-auto" />
-            <XIcon
-              className="w-8 h-8 cursor-pointer"
-              onClick={() => setIsOpen(false)}
-            />
+            <Button variant="ghost" size="icon" aria-label="Close menu" onClick={() => setIsOpen(false)}><XIcon /></Button>
           </div>
           {renderMenuLinks(true)}
+          {me.data?.isAdmin && <Link to="/admin" onClick={() => setIsOpen(false)}>Admin</Link>}
           <Button
             className="login-gradient-radial text-black px-6 py-2 rounded-lg mt-4"
-            onClick={() => setIsOpen(false)}
+            onClick={() => { setIsOpen(false); openSignIn(); }}
           >
             Login
           </Button>

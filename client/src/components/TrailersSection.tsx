@@ -1,31 +1,9 @@
-
-import { dummyTrailers } from "../assets/assets";
-import ReactPlayer from "react-player";
-import BlurCircle from "./BlurCircle";
-import TitleSection from "./TitleSection";
-
-const TrailersSection = () => {
-  const currentTrailer = dummyTrailers[1];
-
-  return (
-    <div className="px-6 md:px-16 lg:px-24 xl:px-44 overflow-hidden py-20">
-      <TitleSection title="Trailers" buttonText="See All" to="/trailers" />
-      <div className="relative mt-6">
-        <BlurCircle top="-100px" right="-20px" />
-
-          <ReactPlayer
-            src={currentTrailer.videoUrl}
-      
-            controls={false}
- 
-            className=" mx-auto max-w-full"
-            width="960px"
-            height="540px"
-          />
-        
-      </div>
-    </div>
-  );
-};
-
-export default TrailersSection;
+import { useResource } from '@/hooks/useResource';
+import type { Movie } from '@/types';
+import { Button } from './ui/button';
+export default function TrailersSection() {
+  const state = useResource<Movie[]>('/movies');
+  const movies = state.data?.filter(movie => movie.trailerUrl) || [];
+  if (!movies.length) return null;
+  return <section className="px-6 md:px-16 lg:px-24 py-14"><h2 className="text-2xl mb-6">Official trailers</h2><div className="flex flex-wrap gap-4">{movies.map(movie => <Button key={movie._id} asChild variant="outline"><a href={movie.trailerUrl} target="_blank" rel="noreferrer">{movie.title}</a></Button>)}</div></section>;
+}

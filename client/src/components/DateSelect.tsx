@@ -53,10 +53,10 @@ const DateSelect = ({ dateTime, id }: { dateTime: import("../types").MovieShow["
             {/* Date Cards */}
             <div className="flex gap-3 overflow-x-auto flex-1 justify-end">
               {Object.keys(dateTime).slice(currentWeek * 7, currentWeek * 7 + 7).map((date) => (
-                <div
+                <Button variant="outline" type="button" aria-pressed={selectedDate === date}
                   onClick={() => setSelectedDate(date)}
                   key={date}
-                  className={`flex-shrink-0 cursor-pointer rounded-lg p-3 min-w-[70px] text-center transition-all
+                  className={`flex-shrink-0 cursor-pointer rounded-lg p-3 h-auto flex-col gap-1 min-w-[70px] text-center transition-all
                      ${
                        selectedDate === date
                          ? " login-gradient-diagonal text-black font-semibold shadow-lg"
@@ -76,7 +76,7 @@ const DateSelect = ({ dateTime, id }: { dateTime: import("../types").MovieShow["
                       month: "short",
                     })}
                   </div>
-                </div>
+                </Button>
               ))}
             </div>
 

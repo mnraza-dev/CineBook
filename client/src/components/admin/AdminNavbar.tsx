@@ -1,16 +1,7 @@
-import { Link } from 'react-router-dom'
-import { assets } from "../../assets/assets"
-const AdminNavbar = () => {
-  return (
-    <div className='flex items-center justify-between px-8 md:px-10 border-b border-gray-300/30 '>
-      <Link to="/admin">
-        <img src={assets.logo} alt="logo" className='w-36 h-24' />
-      </Link>
-      <div className='text-right hidden sm:block'>
-        <p className='text-white text-sm font-medium'>Admin</p>
-        <p className='text-xs text-gray-400'>admin@cinebook.com</p>
-      </div>
-    </div>
-  )
+import { Link } from 'react-router-dom';
+import { UserButton, useUser } from '@clerk/clerk-react';
+import { assets } from '@/assets/assets';
+export default function AdminNavbar() {
+  const { user } = useUser();
+  return <header className="flex items-center justify-between p-6 border-b border-input"><Link to="/"><img src={assets.logo} alt="CineBook" className="w-24" /></Link><div className="flex items-center gap-4"><span>{user?.fullName || 'Administrator'}</span><UserButton /></div></header>;
 }
-export default AdminNavbar

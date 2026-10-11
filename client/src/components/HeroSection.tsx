@@ -1,42 +1,13 @@
-import CinemaScene from "./CinemaScene";
-import { Button } from "@/components/ui/button";
-import React from "react";
-import { assets } from "../assets/assets";
-import { ArrowRight, Calendar1Icon, ClockIcon } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-
-const HeroSection = () => {
-  const navigate = useNavigate();
-  return (
-    <div className='relative isolate flex flex-col items-start justify-center gap-4 px-6 md:px-16 lg:px-36  bg-[url("/backgroundImage.png")] bg-cover bg-center h-screen'>
-      <CinemaScene />
-      <img src={assets.marvelLogo} alt="" className="max-h-11 lg:h-11 mt-20" />
-      <h1 className=" text-5xl md:text-[70px] md:leading-16 font-semibold max-w-110">
-        Guardians <br /> of the Galaxy
-      </h1>
-      <div className="flex items-center gap-4 text-gray-300 ">
-        <span>Action | Adventure | Sci-Fi</span>
-        <div className="flex items-center gap-1">
-          <Calendar1Icon color="#f5ec9b" className=" w-4.5 h-4.5  " /> 2018
-        </div>
-        <div className="flex items-center gap-1">
-          <ClockIcon color="#f5ec9b" className=" w-4.5 h-4.5  " /> 2h 16m
-        </div>
-      </div>
-      <p className="text-gray-300 max-w-md">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, quidem
-         Doloribus, cumque. Quisquam, doloribus.
-      </p>
-      <Button
-        onClick={() => navigate("/movies")}
-        className="login-gradient-radial hover:bg-[#f5ec9b] border-2 border-[#9d9974] hover:border-2 hover:border-[#f5ec9b] text-black px-6 py-2 text-sm  rounded-full flex items-center gap-2 hover:opacity-90 transition font-medium cursor-pointer"
-      >
-        Explore Movies
-        <ArrowRight className="inline-block ml-2 w-4 h-4" />
-      </Button>
-
-    </div>
-  );
-};
-
-export default HeroSection;
+import { lazy, Suspense } from 'react';
+import { Link } from 'react-router-dom';
+const CinemaScene = lazy(() => import('./CinemaScene'));
+import { Button } from './ui/button';
+export default function HeroSection() {
+  return <section className="relative isolate flex flex-col items-start justify-center gap-6 px-6 md:px-16 lg:px-36 bg-[url('/backgroundImage.png')] bg-cover bg-center min-h-[70vh]">
+    <div className="absolute inset-0 bg-black/60 -z-10" /><Suspense fallback={null}><CinemaScene /></Suspense>
+    <p className="uppercase tracking-[0.3em] text-logo-color-light">Your next cinema night</p>
+    <h1 className="text-5xl md:text-7xl font-semibold max-w-2xl">Great stories.<br />Your favorite seats.</h1>
+    <p className="text-gray-300 max-w-lg">Find a film, choose your showtime, and reserve your seats for the big screen.</p>
+    <Button asChild size="lg"><Link to="/movies">Explore movies</Link></Button>
+  </section>;
+}

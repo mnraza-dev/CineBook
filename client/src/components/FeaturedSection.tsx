@@ -1,17 +1,22 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { dummyShowsData } from "../assets/assets";
+import { useResource } from "@/hooks/useResource";
+import type { Movie } from "@/types";
+import ResourceState from "./ResourceState";
 import MovieCard from "./MovieCard";
 import TitleSection from "./TitleSection";
 
 const FeaturedSection = () => {
   const navigate = useNavigate();
+  const state = useResource<Movie[]>("/movies");
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-44 overflow-hidden">
       <TitleSection title="Now Showing in Cinemas" to="/movies" />
+      <ResourceState {...state} retry={state.reload} />
+      {!state.loading && !state.error && !state.data?.length && <p>No upcoming shows yet.</p>}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
-        {dummyShowsData.slice(0, 4).map((show) => (
+        {state.data?.slice(0, 4).map((show) => (
           <MovieCard key={show._id} movie={show} />
         ))}
       </div>
