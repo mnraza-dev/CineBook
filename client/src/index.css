@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap");
 @import "tailwindcss";
+@import "tw-animate-css";
 
 /* 🌈 Custom gradient variants */
 .login-gradient {
@@ -76,4 +77,21 @@ body {
   color: #fff;
   background-color: #09090b;
   font-family: "Outfit", sans-serif;
+}
+
+:root {
+  --background: #09090b; --foreground: #fafafa;
+  --primary: #b99a45; --primary-foreground: #09090b;
+  --secondary: #27272a; --secondary-foreground: #fafafa;
+  --accent: #27272a; --accent-foreground: #fafafa;
+  --destructive: #dc2626; --input: #3f3f46; --ring: #b99a45;
+  --muted-foreground: #a1a1aa; --radius: 0.625rem;
+}
+@theme inline {
+  --color-background: var(--background); --color-foreground: var(--foreground);
+  --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive); --color-input: var(--input);
+  --color-ring: var(--ring); --color-muted-foreground: var(--muted-foreground);
 }
